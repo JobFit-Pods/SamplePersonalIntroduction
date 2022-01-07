@@ -1,0 +1,8 @@
+.flex-container>div {
+    flex: 50%;
+    background-color: darkgrey;
+    border: darkgrey solid 1px;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 5px;
+  }

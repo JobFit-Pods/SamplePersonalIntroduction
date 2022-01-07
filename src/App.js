@@ -1,23 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
+import React from "react";
+import AboutMe from "./components/about-me/AboutMe";
+import Game from './components/game/Game';
 
 function App() {
+  const [info, setInfo] = React.useState({
+      name: "",
+      questions: [],
+      playGame: false
+  });
+
+  const onUpdate = (updatedInfo) => {
+    setInfo(Object.assign({}, updatedInfo));
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="flex-container">
+      {
+        !info.playGame &&
+        <AboutMe info={info} onUpdate={onUpdate} />
+      }
+      {
+        info.playGame &&
+        <Game info={info} onUpdate={onUpdate} />
+      }
     </div>
   );
 }
