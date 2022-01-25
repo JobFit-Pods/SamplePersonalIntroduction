@@ -7,7 +7,7 @@ import Question from "./question/Question";
 export function AboutMeWizard(props) {
     let questions = getQuestions();
     const onSave = (value) => {
-        props.onUpdate(Object.assign({}, props.info, { name: value }));
+        props.onUpdate(Object.assign({}, props.info, value));
     }
 
     const onSaveAnswer = (question) => {
@@ -28,15 +28,16 @@ export function AboutMeWizard(props) {
     return (
         <div className={props.className}>
             <h2>Who Am I?</h2>
-            <NameEntry name={props.info.name} onSave={onSave} />
+            <NameEntry firstName={props.info.firstName} lastName={props.info.lastName} onSave={onSave} />
             {
                 questions.map((question, index) => {
                     return (<Question
                         key={index}
                         text={question.question}
                         onSave={onSaveAnswer}
+                        answer={props.info.questions[index] ? props.info.questions[index].answer : ''}
                         questionNumber={index}
-                        visible={index === 0 ? props.info.name : props.info.questions[index - 1]}
+                        visible={index === 0 ? props.info.firstName && props.info.lastName : props.info.questions[index - 1]}
                     />);
                 })
             }

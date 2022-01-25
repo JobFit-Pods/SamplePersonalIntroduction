@@ -2,29 +2,43 @@ import './App.css';
 import React from "react";
 import AboutMe from "./components/about-me/AboutMe";
 import Game from './components/game/Game';
+import { Hal } from './components/hal/Hal';
 
 function App() {
   const [info, setInfo] = React.useState({
-      name: "",
+      firstName: "",
+      lastName: "",
       questions: [],
-      playGame: false
+      playGame: null
   });
 
   const onUpdate = (updatedInfo) => {
     setInfo(Object.assign({}, updatedInfo));
   }
+  const onHide = () => {
+    setInfo(Object.assign({}, info, {playGame: null}));
+  }
 
   return (
-    <div className="flex-container">
+    <>
       {
-        !info.playGame &&
-        <AboutMe info={info} onUpdate={onUpdate} />
+        info.playGame !== false &&
+        <div className="flex-container">
+          {
+            info.playGame === null &&
+            <AboutMe info={info} onUpdate={onUpdate} />
+          }
+          {
+            info.playGame &&
+            <Game info={info} onUpdate={onUpdate} />
+          }
+        </div>
       }
       {
-        info.playGame &&
-        <Game info={info} onUpdate={onUpdate} />
+        info.playGame === false &&
+        <Hal firstName={info.firstName} onHide={onHide}/>
       }
-    </div>
+    </>
   );
 }
 

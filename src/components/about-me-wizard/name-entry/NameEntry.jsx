@@ -1,10 +1,10 @@
 import * as React from 'react'
 
 export default function NameEntry(props) {
-    const [firstName, setFirstName] = React.useState("");
-    const [lastName, setLastName] = React.useState("");
+    const [firstName, setFirstName] = React.useState(props.firstName);
+    const [lastName, setLastName] = React.useState(props.lastName);
     const handleClick = () => {
-        props.onSave(`${firstName} ${lastName}`);
+        props.onSave({ firstName: firstName, lastName: lastName });
     }
     return (
         <div>

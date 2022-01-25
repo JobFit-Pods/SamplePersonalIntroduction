@@ -7,7 +7,7 @@ export function AboutMeDisplay(props) {
         <div className={props.className}>
             <h2>This is me!</h2>
             {props.info.name &&
-                <h3>My name is: {props.info.name}</h3>
+                <h3>My name is: {props.info.firstName} {props.info.lastName}</h3>
             }
             {
                 props.info.questions

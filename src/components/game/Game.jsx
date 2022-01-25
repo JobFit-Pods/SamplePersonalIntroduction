@@ -34,6 +34,10 @@ export default function Game(props) {
         setGame(Object.assign({}, game, { story: story }));
     }
 
+    const onTakeMeHome = () => {
+        props.onUpdate(Object.assign({}, props.info, { playGame: null }));
+    }
+
     return (
         <>
             <div>
@@ -65,6 +69,7 @@ export default function Game(props) {
                     <>
                         <h2>{template.title}</h2>
                         <p>{game.story}</p>
+                        <button onClick={onTakeMeHome}>Take Me Home</button>
                     </>
                 }
             </div>
